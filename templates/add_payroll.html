@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Payroll</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>Add Payroll</h2>
+  <form method="POST">
+    <label>Employee:</label>
+    <select name="emp_id">
+      {% for e in emps %}
+        <option value="{{ e['emp_id'] }}">{{ e['emp_name'] }}</option>
+      {% endfor %}
+    </select><br>
+    <label>Basic Salary:</label><input type="number" name="basic" required><br>
+    <label>Deductions:</label><input type="number" name="deductions" value="0"><br>
+    <label>Bonus:</label><input type="number" name="bonus" value="0"><br>
+    <label>Pay Date:</label><input type="date" name="pay_date" required><br>
+    <button type="submit">Add Payroll</button>
+  </form>
+  <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

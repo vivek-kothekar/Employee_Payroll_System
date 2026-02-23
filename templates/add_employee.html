@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Employee</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>Add Employee</h2>
+  <form method="POST">
+    <label>Name:</label><input type="text" name="name" required><br>
+    <label>Designation:</label><input type="text" name="designation" required><br>
+    <label>Department:</label>
+    <select name="dept_id">
+      {% for d in depts %}
+        <option value="{{ d['dept_id'] }}">{{ d['dept_name'] }}</option>
+      {% endfor %}
+    </select><br>
+    <button type="submit">Add Employee</button>
+  </form>
+  <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

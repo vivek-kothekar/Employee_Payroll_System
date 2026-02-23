@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Payroll System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h2>Employee Payroll System</h2>
+  <nav>
+    <a href="{{ url_for('add_employee') }}">Add Employee</a> |
+    <a href="{{ url_for('add_payroll') }}">Add Payroll</a> |
+    <a href="{{ url_for('show_all') }}">Show Full Database</a>
+  </nav>
+
+  <form method="POST">
+    <label>Employee ID:</label>
+    <input type="text" name="empid" required><br>
+    <label>Pay Date:</label>
+    <input type="date" name="paydate" required><br>
+    <button type="submit">Get Payslip</button>
+  </form>
+
+  {% if payslip %}
+  <div class="card">
+    <h3>Payslip — {{ payslip['emp_name'] }}</h3>
+    <table>
+      <tr><th>Employee ID</th><td>{{ payslip['emp_id'] }}</td></tr>
+      <tr><th>Designation</th><td>{{ payslip['designation'] }}</td></tr>
+      <tr><th>Department</th><td>{{ payslip['dept_name'] }}</td></tr>
+      <tr><th>Pay Date</th><td>{{ payslip['pay_date'] }}</td></tr>
+      <tr><th>Basic Salary</th><td>{{ payslip['basic_salary'] }}</td></tr>
+      <tr><th>Deductions</th><td>{{ payslip['deductions'] }}</td></tr>
+      <tr><th>Bonus</th><td>{{ payslip['bonus'] }}</td></tr>
+      <tr><th>Net Salary</th><td><b>{{ payslip['net_salary'] }}</b></td></tr>
+    </table>
+    <button onclick="window.print()">Print Payslip</button>
+  </div>
+  {% endif %}
+</body>
+</html>
